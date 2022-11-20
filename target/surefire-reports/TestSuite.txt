@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: cucumber_options.TestngTestRunner
+Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.794 s - in cucumber_options.TestngTestRunner
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.134 s - in TestSuite
