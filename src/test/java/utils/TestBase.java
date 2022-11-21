@@ -16,23 +16,19 @@ import java.util.Properties;
 public class TestBase {
 
     public WebDriver driver;
-    public TestContextSetup testContextSetup;
+    ConfigFileReader configFileReader;
+
+    public TestBase () {
+
+    }
 
 
     public WebDriver webDriverManager () throws Exception {
 
 
-
-        File src = new File(System.getProperty("user.dir") + "/src/test/resources/global.properties");
-        FileInputStream objfile = new FileInputStream(src);
-        Properties obj = new Properties();
-        obj.load(objfile);
-        String browser = obj.getProperty("browser");
-        String url = obj.getProperty("url");
-
         if (driver == null) {
 
-            switch (browser){
+            switch (FileReaderManager.getInstance().getConfigReader().getBrowser()){
                 case "chrome" :
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
@@ -54,7 +50,7 @@ public class TestBase {
                 default:
                     throw new Exception("Browser is not correct");
             }
-            driver.get(url);
+            driver.get(FileReaderManager.getInstance().getConfigReader().getUrl());
             driver.manage().window().maximize();
         }
         return driver;

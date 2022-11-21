@@ -18,24 +18,28 @@ public class LoginPageStepDefinition {
     public WebDriver driver;
     TestContextSetup testContextSetup;
     PageObjectManager pageObjectManager;
+    LoginPage newLoginPage;
 
     public LoginPageStepDefinition(TestContextSetup testContextSetup) {
+
         this.testContextSetup = testContextSetup;
+        this.newLoginPage = testContextSetup.pageObjectManager.getLoginPageObjects();
+
     }
 
 
     @Given("^User is on login page$")
     public void user_is_on_login_page() throws Throwable {
-        LoginPage newLoginPage = testContextSetup.pageObjectManager.getLoginPageObjects();
+
         newLoginPage.isUserNameFieldDisplayed();
 
     }
 
-    @When("^User login to the application with valid username and valid password$")
-    public void user_login_to_the_application_with_valid_username_and_valid_password(DataTable data) throws Throwable {
-        List<List<String>> dataList =  data.asLists();
-        LoginPage newLoginPage = testContextSetup.pageObjectManager.getLoginPageObjects();
-        newLoginPage.loginToAdmin(dataList.get(0).get(0), dataList.get(0).get(1));
+    @When("^User login to the application with valid (.+) and valid (.+)$")
+    public void user_login_to_the_application_with_username_and_password(String username, String password) throws Throwable {
+        //List<List<String>> dataList =  data.asLists();
+        //newLoginPage.loginToAdmin(dataList.get(0).get(0), dataList.get(0).get(1));
+        newLoginPage.loginToAdmin(username, password);
 
 
     }

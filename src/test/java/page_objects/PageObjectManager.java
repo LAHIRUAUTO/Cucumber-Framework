@@ -10,6 +10,7 @@ public class PageObjectManager {
     public HomePage newHomePage;
     public WebDriver driver;
 
+
     public PageObjectManager (WebDriver driver) {
         this.driver = driver;
 
